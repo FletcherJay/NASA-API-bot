@@ -19,20 +19,32 @@ let selectedEventIndex = ''
 getNasaInfo().then(event => {
     selectedEventIndex = event.length - event.length
     displaySelectedEvent(event)
+  
 
 });
 
 const currentMessageElement = document.querySelector('[data-message-body]')
 const currentMessageDateElement = document.querySelector('[data-message-Time]')
 const currentEventTypeElement = document.querySelector('[data-event-Type]')
+const cardBody = document.getElementsByClassName("card-body")
 
 function displaySelectedEvent(event) {
     const selectedEvent = event[selectedEventIndex]
-    currentMessageElement.innerText = selectedEvent.eventMessage
-    currentMessageDateElement.innerText = selectedEvent.eventDate
-    currentEventTypeElement.innerText = selectedEvent.eventType
+ 
 
+    currentMessageElement.innerHTML = 
+    `<p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            ${selectedEvent.eventType}/${selectedEvent.eventDate}
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card-body">
+            ${selectedEvent.eventMessage}
+        </div>
+    </div>`
 }
+
 function getNasaInfo() {
     return fetch(API_URL)
         .then(res => res.json())
