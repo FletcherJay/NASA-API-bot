@@ -14,11 +14,9 @@ let startDate = '2021/05/05'
 //i think it would be cool if it could tweet a user
 let API_URL = `https://api.nasa.gov/DONKI/notifications?startDate=${startDate}&endDate=${endDate}&type=all&api_key=${API_KEY}`
 
-let selectedEventIndex = ''
-
 getNasaInfo().then(event => {
-    selectedEventIndex = event.length - event.length
-    displaySelectedEvent(event)
+    
+    event.forEach(event => displaySelectedEvent(event))
   
 
 });
@@ -29,20 +27,20 @@ const currentEventTypeElement = document.querySelector('[data-event-Type]')
 const cardBody = document.getElementsByClassName("card-body")
 
 function displaySelectedEvent(event) {
-    const selectedEvent = event[selectedEventIndex]
- 
-
+    let div = document.createElement("div")
+    .append
     currentMessageElement.innerHTML = 
     `<p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            ${selectedEvent.eventType}/${selectedEvent.eventDate}
+            ${event.eventType}/${event.eventDate}
         </button>
     </p>
     <div class="collapse" id="collapseExample">
         <div class="card-body">
-            ${selectedEvent.eventMessage}
+            ${event.eventMessage}
         </div>
     </div>`
+
 }
 
 function getNasaInfo() {
