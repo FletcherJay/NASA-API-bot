@@ -28,8 +28,10 @@ const cardBody = document.getElementsByClassName("card-body")
 
 function displaySelectedEvent(event) {
     let div = document.createElement("div")
-    .append
-    currentMessageElement.innerHTML = 
+    currentMessageElement.appendChild(div)
+
+    div.setAttribute("id", `${event.eventType}/${event.eventDate}`)
+    document.getElementById(`${event.eventType}/${event.eventDate}`).innerHTML = 
     `<p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             ${event.eventType}/${event.eventDate}
