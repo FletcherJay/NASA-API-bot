@@ -30,14 +30,14 @@ function displaySelectedEvent(event) {
     let div = document.createElement("div")
     currentMessageElement.appendChild(div)
 
-    div.setAttribute("id", `${event.eventType}/${event.eventDate}`)
-    document.getElementById(`${event.eventType}/${event.eventDate}`).innerHTML = 
+    div.setAttribute("id", `${event.eventDate}`)
+    document.getElementById(`${event.eventDate}`).innerHTML = 
     `<p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#${event.eventType}/${event.eventDate}" aria-expanded="false" aria-controls="${event.eventType}/${event.eventDate}">
             ${event.eventType}/${event.eventDate}
         </button>
     </p>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="${event.eventType}/${event.eventDate}">
         <div class="card-body">
             ${event.eventMessage}
         </div>
